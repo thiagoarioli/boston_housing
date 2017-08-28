@@ -11806,7 +11806,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11880,23 +11880,23 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Preço mínimo dos dados</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Preço máximo dos dados</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Preço médio dos dados</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Preço mediano dos dados</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Desvio padrão do preço dos dados</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="k">print</span> <span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -11925,7 +11925,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,340.28
+Standard deviation of prices: $165,171.13
 </pre>
 </div>
 </div>
@@ -13285,7 +13285,7 @@ Think about the pros and cons of adding more training points based on if the tra
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> the best model is max_deep 3 because he achieves the best score on training data and test data.
 The training curve decreases score a little when you put more training data and tends to stay constant. Already the testing date increase when you put more data.
-This happening because when more data to test you put more errors on training you gonna have but more accuracy you take on test data. So yes is benefiting have more data to test.</p>
+This happening because when more data to test you put more errors on training you gonna have but more accuracy you take on test data. So yes is benefiting have more data to test. We have a limit here increase more data is not an exponential of performance in a moment performance is going to stabilize may even fall with a overfitting.</p>
 
 </div>
 </div>
@@ -13754,7 +13754,7 @@ xgSN/weYExpDrnADHwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> The model with depth 1 suffer from high bias, on the starts he has a good performance but when you put more data and consequently more complex the model is going lose performance.
+<p><strong>Answer: </strong> The model with depth 1 suffer from high bias, he is a generic model and have a more error on training set but he gonna have low variant on test set then we got a similar forecast.
 When you use maximum 10 of depth, the model suffer with high variance in this case we have so many rules and the model can not generalize some rules and this make he lose performance on validation score and make you build a addict algorithm</p>
 
 </div>
@@ -13844,6 +13844,9 @@ One use case is combination a possibility the kernel, linear or polynomial and g
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> k-fold cross-validation break the data in k buckets, in this way you can use the buckets to test your data, in the end, you calculate de accuracy about the find erros. Thus obtaining a more reliable measure and not losing important data to training.
 The benefits are this way you can provide many buckets to many kinds of variations on grid search and not lose important data.</p>
+<p>The folds are arranged in k sets of the same size as this set is separated a subset k1 which is the test set</p>
+<p>The amount of interactions are k times the difference is the data splited in an unorganized way.</p>
+<p>Using only one separation can not guarantee that the chosen model is the best. Because the separate base may contain a sampling that does not reflect the reality of the data</p>
 
 </div>
 </div>
@@ -14078,7 +14081,8 @@ Predicted selling price for Client 3&#39;s home: $938,053.85
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> For Client 1's home: 406,933.33, For Client 2's home: 232,200.00 and For Client 3's home: 938,053.85
-Yes this values seem reasonable, for two reasons when you see the attributes they have weight like I describe on question One, another reason is the number wee suggest is on accord to Data exploration and the variation on then</p>
+Yes this values seem reasonable, for two reasons when you see the attributes they have weight like I describe on question One, another reason is the number wee suggest is on accord to Data exploration and the variation on then.</p>
+<p>These results make sense because when we took the 3 client and analyzed their attributes we see that buildings with 8 to 9 rooms have the highest prices. Properties with LSTAT less than 5 have the highest prices also and houses with PTRATIO between 10 and 12 also have the best prices. Being positioned in these best 3 scores thus reaching almost the maximum price of the data.</p>
 
 </div>
 </div>
